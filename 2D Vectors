@@ -29,7 +29,7 @@ class Vec:
 
     def unit(self):
         return self/self.norm()
-    
+
     def __neg__(self):
         return (-1) * self
 
@@ -46,3 +46,7 @@ def angle(a: 'Vec', b: 'Vec'):
 
 def dist(a: 'Vec', b: 'Vec'):
     return (a-b).norm()
+
+
+def polar(phi, r):
+    return r * Vec(cos(phi), sin(phi))
