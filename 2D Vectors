@@ -29,6 +29,9 @@ class Vec:
 
     def unit(self):
         return self/self.norm()
+    
+    def __neg__(self):
+        return (-1) * self
 
 
 def dot(a: 'Vec', b: 'Vec'):
