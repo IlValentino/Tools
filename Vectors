@@ -55,3 +55,13 @@ def angle(v1: 'Vec', v2: 'Vec'):
     v2 = v2.unit()
     output = acos(dot(v1, v2))
     return output
+    
+
+def spherical(phi, theta):
+    phi = phi/pi
+    theta = theta/pi
+    x = cos(phi) * sin(theta)
+    y = sin(phi) * sin(theta)
+    z = cos(theta)
+    output = Vec(x, y, z)
+    return output
