@@ -58,8 +58,6 @@ def angle(v1: 'Vec', v2: 'Vec'):
     
 
 def spherical(phi, theta):
-    phi = phi/pi
-    theta = theta/pi
     x = cos(phi) * sin(theta)
     y = sin(phi) * sin(theta)
     z = cos(theta)
