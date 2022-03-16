@@ -63,3 +63,10 @@ def spherical(phi, theta):
     z = cos(theta)
     output = Vec(x, y, z)
     return output
+    
+    
+def polar(phi):
+    x = cos(phi)
+    y = sin(phi)
+    output = Vec(x, y, 0)
+    return output
