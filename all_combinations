@@ -1,0 +1,7 @@
+from itertools import combinations
+
+
+def comb(ob_list):
+    n = len(ob_list)
+    output = sum([list(map(list, combinations(ob_list, i))) for i in range(n + 1)], [])
+    return output
