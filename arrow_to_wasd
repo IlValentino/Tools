@@ -11,10 +11,19 @@ keyboard.add_hotkey("w", lambda: simple_press("up"), suppress=True)
 keyboard.add_hotkey("a", lambda: simple_press("left"), suppress=True)
 keyboard.add_hotkey("s", lambda: simple_press("down"), suppress=True)
 keyboard.add_hotkey("d", lambda: simple_press("right"), suppress=True)
+
 keyboard.add_hotkey("w+a", lambda: simple_press("up+left"), suppress=True)
 keyboard.add_hotkey("w+d", lambda: simple_press("up+right"), suppress=True)
 keyboard.add_hotkey("s+a", lambda: simple_press("down+left"), suppress=True)
 keyboard.add_hotkey("s+d", lambda: simple_press("down+right"), suppress=True)
 keyboard.add_hotkey("w+s", lambda: simple_press("up+down"), suppress=True)
+keyboard.add_hotkey("a+d", lambda: simple_press("left+right"), suppress=True)
+
+keyboard.add_hotkey("w+a+s", lambda: simple_press("up+down+left"), suppress=True)
+keyboard.add_hotkey("w+a+d", lambda: simple_press("up+left+right"), suppress=True)
+keyboard.add_hotkey("a+s+d", lambda: simple_press("left+down+right"), suppress=True)
+keyboard.add_hotkey("w+s+d", lambda: simple_press("up+down+right"), suppress=True)
+
+keyboard.add_hotkey("w+a+s+d", lambda: simple_press("left+right+up+down"), suppress=True)
 while True:
     time.sleep(1)
