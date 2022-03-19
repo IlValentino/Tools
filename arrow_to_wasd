@@ -1,6 +1,7 @@
 import time
-
 import keyboard
+
+# for vic2
 
 key_pair_list = [["w", "up"], ["a", "left"], ["s", "down"], ["d", "right"]]
 for key_pair in key_pair_list:
