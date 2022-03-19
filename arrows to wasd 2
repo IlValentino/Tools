@@ -1,0 +1,42 @@
+import time
+import keyboard
+import pydirectinput
+
+
+pydirectinput.PAUSE = 0
+
+
+def simple_press(keys, original_keys):
+    for original_key in original_keys:
+        keyboard.block_key(original_key)
+    for key in keys:
+        pydirectinput.keyDown(key)
+    time.sleep(0.03)
+    for key in keys:
+        pydirectinput.keyUp(key)
+    for original_key in original_keys:
+        keyboard.unblock_key(original_key)
+
+
+keyboard.add_hotkey("w", lambda: simple_press(["up"], ["w"]), suppress=True)
+keyboard.add_hotkey("a", lambda: simple_press(["left"], ["a"]), suppress=True)
+keyboard.add_hotkey("s", lambda: simple_press(["down"], ["s"]), suppress=True)
+keyboard.add_hotkey("d", lambda: simple_press(["right"], ["d"]), suppress=True)
+
+keyboard.add_hotkey("w+a", lambda: simple_press(["up", "left"], ["w", "a"]), suppress=True)
+keyboard.add_hotkey("w+d", lambda: simple_press(["up", "right"], ["w", "d"]), suppress=True)
+keyboard.add_hotkey("s+a", lambda: simple_press(["down", "left"], ["s", "a"]), suppress=True)
+keyboard.add_hotkey("s+d", lambda: simple_press(["down", "right"], ["s", "d"]), suppress=True)
+keyboard.add_hotkey("w+s", lambda: simple_press(["up", "down"], ["w", "s"]), suppress=True)
+keyboard.add_hotkey("a+d", lambda: simple_press(["left", "right"], ["a", "d"]), suppress=True)
+
+keyboard.add_hotkey("w+a+s", lambda: simple_press(["up", "down", "left"], ["w", "a", "s"]), suppress=True)
+keyboard.add_hotkey("w+a+d", lambda: simple_press(["up", "left", "right"], ["w", "a", "d"]), suppress=True)
+keyboard.add_hotkey("a+s+d", lambda: simple_press(["left", "down", "right"], ["a", "s", "d"]), suppress=True)
+keyboard.add_hotkey("w+s+d", lambda: simple_press(["up", "down", "right"], ["w", "s", "d"]), suppress=True)
+
+keyboard.add_hotkey("w+a+s+d", lambda: simple_press(["left", "right", "up", "down"], ["w", "a", "s", "d"]),
+                    suppress=True)
+
+while True:
+    time.sleep(0.4)
