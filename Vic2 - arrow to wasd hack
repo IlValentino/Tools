@@ -1,0 +1,63 @@
+import time
+from pynput.mouse import Controller
+import keyboard
+import pyautogui
+
+max_x = 1920
+max_y = 1080
+
+mouse = Controller()
+pyautogui.PAUSE = 0.01
+pyautogui.FAILSAFE = False
+pause = 0.03
+
+
+def scroll(direction):
+    if direction == "down":
+        mouse.scroll(0, 30)
+    elif direction == "up":
+        mouse.scroll(0, -30)
+
+
+def move_mouse(x, y):
+    current = pyautogui.position()
+    pyautogui.moveTo(x, y)
+    time.sleep(pause)
+    pyautogui.moveTo(current[0], current[1])
+
+
+keyboard.add_hotkey("y", lambda: scroll("down"), suppress=True)
+keyboard.add_hotkey("x", lambda: scroll("up"), suppress=True)
+
+for key in [["w", "up"], ["a", "left"], ["s", "down"], ["d", "right"]]:
+    keyboard.remap_key(key[0], key[1])
+
+while True:
+    if keyboard.is_pressed("w") and keyboard.is_pressed("a") and keyboard.is_pressed("s") and keyboard.is_pressed("d"):
+        pass
+    elif keyboard.is_pressed("s") and keyboard.is_pressed("d"):
+        move_mouse(max_x, max_y)
+    elif keyboard.is_pressed("w") and keyboard.is_pressed("d") or (keyboard.is_pressed("w") and keyboard.is_pressed("s")
+                                                                   and keyboard.is_pressed("d")):
+        move_mouse(max_x, 0)
+    elif keyboard.is_pressed("w") and keyboard.is_pressed("a"):
+        move_mouse(0, 0)
+    elif keyboard.is_pressed("a") and keyboard.is_pressed("d"):
+        pass
+    elif keyboard.is_pressed("w") and keyboard.is_pressed("s") or (keyboard.is_pressed("w") and keyboard.is_pressed("a")
+                                                                   and keyboard.is_pressed("s")):
+        pass
+    elif keyboard.is_pressed("a") and keyboard.is_pressed("s"):
+        move_mouse(0, max_y)
+    elif keyboard.is_pressed("a"):
+        move_mouse(0, max_y/2)
+    elif keyboard.is_pressed("w") or (keyboard.is_pressed("w") and keyboard.is_pressed("a") and
+                                      keyboard.is_pressed("d")):
+        move_mouse(max_x/2, 0)
+    elif keyboard.is_pressed("s") or (keyboard.is_pressed("a") and keyboard.is_pressed("s") and
+                                      keyboard.is_pressed("d")):
+        move_mouse(max_x/2, max_y)
+    elif keyboard.is_pressed("d"):
+        move_mouse(max_x, max_y/2)
+
+    time.sleep(0.001)
