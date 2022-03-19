@@ -1,6 +1,9 @@
 import time
 import keyboard
+import pyautogui
 import pydirectinput
+
+# for CK2
 
 pydirectinput.PAUSE = 0
 
@@ -13,5 +16,7 @@ while True:
             pydirectinput.keyDown(key[1])
         else:
             pydirectinput.keyUp(key[1])
+    if keyboard.is_pressed("k"):
+        pyautogui.press("winleft")
 
-    time.sleep(0.001)
+    time.sleep(0.01)
