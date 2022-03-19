@@ -3,8 +3,6 @@ import keyboard
 import pyautogui
 import pydirectinput
 
-# for CK2
-
 pydirectinput.PAUSE = 0
 
 for key in [["w", "up"], ["a", "left"], ["s", "down"], ["d", "right"]]:
