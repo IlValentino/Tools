@@ -1,20 +1,26 @@
 import time
 import keyboard
-import pyautogui
 import pydirectinput
 
 pydirectinput.PAUSE = 0
 
+
+class KeyIndicator:
+    def __init__(self):
+        self.mode = 0
+
+
 for key in [["w", "up"], ["a", "left"], ["s", "down"], ["d", "right"]]:
     keyboard.remap_key(key[0], key[1])
 
+a, b, c, d = KeyIndicator(), KeyIndicator(), KeyIndicator(), KeyIndicator()
 while True:
-    for key in [["w", "up"], ["a", "left"], ["s", "down"], ["d", "right"]]:
-        if keyboard.is_pressed(key[0]):
+    for key in [["w", "up", a], ["a", "left", b], ["s", "down", c], ["d", "right", d]]:
+        if keyboard.is_pressed(key[0]) and key[2].mode == 0:
             pydirectinput.keyDown(key[1])
-        else:
+            key[2].mode = 1
+        elif not keyboard.is_pressed(key[0]) and key[2].mode == 1:
             pydirectinput.keyUp(key[1])
-    if keyboard.is_pressed("k"):
-        pyautogui.press("winleft")
+            key[2].mode = 0
 
     time.sleep(0.01)
