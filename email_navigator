@@ -1,0 +1,29 @@
+import time
+import pyautogui
+import keyboard
+
+
+def set_as_read():
+    current = pyautogui.position()
+    pyautogui.moveTo(1625, 678)
+    pyautogui.leftClick()
+    pyautogui.moveTo(current[0], current[1])
+
+
+def scroll(direction):
+    current = pyautogui.position()
+    if direction == "back":
+        pyautogui.moveTo(1805, 131)
+        pyautogui.leftClick()
+    elif direction == "forward":
+        pyautogui.moveTo(1847, 127)
+        pyautogui.leftClick()
+    pyautogui.moveTo(current[0], current[1])
+
+
+keyboard.add_hotkey("space", lambda: set_as_read(), suppress=True)
+keyboard.add_hotkey("a", lambda: scroll("back"), suppress=True)
+keyboard.add_hotkey("d", lambda: scroll("forward"), suppress=True)
+
+while True:
+    time.sleep(1)
