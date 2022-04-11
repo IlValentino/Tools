@@ -1,0 +1,13 @@
+def derivative(f, x):
+    h = 10**(-10)
+    output = (f(x+h)-f(x))/h
+    return output
+
+
+def newton_raphson(f, guess_x, iterations):
+    guess = guess_x
+    for i in range(iterations):
+        new_guess = guess - f(guess)/derivative(f, guess)
+        guess = new_guess
+    return guess
+    
